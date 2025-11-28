@@ -2,7 +2,6 @@ This repository contains the implementation for the paper **"Towards Efficient D
 
 Our code is based on the [solo-learn repository](https://github.com/vturrisi/solo-learn).
 
----
 
 ### ✨ Features
 
@@ -18,14 +17,10 @@ Our code is based on the [solo-learn repository](https://github.com/vturrisi/sol
         
 - Reproducible configuration files for all experiments.
     
-- Support for the **CICIoT2022 dataset**.
-    
-
----
 
 ### 💾 Dataset Preparation
 
-1. Download the **CICIoT2022 dataset** from the [NetMamba repository](https://github.com/wangtz19/NetMamba).
+1. Download the **dataset** from the [NetMamba repository](https://github.com/wangtz19/NetMamba).
     
 2. Organize the dataset with the following directory structure:
     
@@ -36,13 +31,9 @@ Our code is based on the [solo-learn repository](https://github.com/vturrisi/sol
     ```
     
 
----
-
 ### 🚀 Getting Started
 
 First, install the required dependencies:
-
-Bash
 
 ```
 pip install -r requirements.txt
@@ -51,8 +42,6 @@ pip install -r requirements.txt
 #### 1. Pre-training with FreqRec
 
 Run the pre-training script using the reconstruction configuration:
-
-Bash
 
 ```
 python main_pretrain_traffic.py --config-path scripts/pretrain/traffic/ --config-name reconstruct.yaml
@@ -64,8 +53,6 @@ python main_pretrain_traffic.py --config-path scripts/pretrain/traffic/ --config
 
 Use the pre-trained model for linear evaluation (fine-tuning the classification head only):
 
-Bash
-
 ```
 python main_linear_traffic.py --config-path scripts/linear/traffic/ --config-name reconstruct.yaml
 ```
@@ -74,13 +61,10 @@ python main_linear_traffic.py --config-path scripts/linear/traffic/ --config-nam
 
 Fine-tune the model using the MT-adapter:
 
-Bash
-
 ```
 python main_adapter_traffic.py --config-path scripts/adapter/traffic/ --config-name reconstruct.yaml
 ```
 
----
 
 ### 🙏 Acknowledgements
 
