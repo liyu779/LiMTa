@@ -1,0 +1,60 @@
+
+tensorboard: 
+  enabled: True
+# disable hydra outputs
+hydra:
+  output_subdir: null
+  run:
+    dir: .
+
+name: "byol-traffic-adapter"
+pretrained_feature_extractor: "/home/model-server/code/solo-learn/trained_models/traffic_fft_cl/126/byol-traffic-126-ep=999.ckpt"
+backbone:
+  name: "traffic_encoder"
+  kwargs:
+    input_dim: 500
+    d_model: 500 # hidden layer dimensions
+    seq_length : 401 
+    n_head : 4
+    kernel_size : 3
+    n_layer : 5
+
+    # LoRA parameters
+    r : 2
+    alpha: 32
+    drop : 0.2
+    lora_n_layer: 5
+
+embeding:
+  dim : 500
+pretrain_method: "byol"
+data:
+# ISCXTor2016 CrossPlatform-iOS  CrossPlatform-Android
+#  CICIoT2022 ISCXVPN2016 ISCXTor2016 USTCTFC2016
+  dataset: ISCXTor2016 # change here for ISCXTor2016 
+  train_path: "/home/model-server/code/solo-learn/dataset/ISCXTor2016/"
+  val_path: "/home/model-server/code/solo-learn/dataset/ISCXTor2016/"
+  format: "image_folder"
+  num_workers: 4
+optimizer:
+  name: "sgd"
+  batch_size: 128
+  lr: 0.03
+  weight_decay: 0
+scheduler:
+  name: "step"
+  lr_decay_steps: [60, 80]
+checkpoint:
+  enabled: False
+  dir: "trained_models"
+  frequency: 1
+auto_resume:
+  enabled: True
+finetune: False
+# overwrite PL stuff
+max_epochs: 100
+devices: [0]
+sync_batchnorm: True
+accelerator: "gpu"
+strategy: "ddp"
+precision: 16
