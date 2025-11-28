@@ -1,6 +1,7 @@
 # LiMTa
 The repository of paper Towards Efficient Distributed Network Security: A Lightweight Multitask Traffic Analysis Framework
 
+Our code is based on [[solo-learn repository link](https://github.com/vturrisi/solo-learn)]
 ## Features
 - Implementation of FrqRec and MT-adapter
 - Pre-training, linear evaluation, and adapter fine-tuning pipelines
@@ -8,7 +9,7 @@ The repository of paper Towards Efficient Distributed Network Security: A Lightw
 - Support for  dataset
 
 ## Dataset Preparation
-1. Download the dataset from the [repository](https://github.com/wangtz19/NetMamba)
+1. Download the dataset from the [[NetMamba repository](https://github.com/wangtz19/NetMamba)]
 2. Organize the dataset with the following structure:/dataset/CICIoT2022/{train}or{test}
 ## Getting Started
 pip install -r requirements.txt
@@ -28,4 +29,4 @@ python main_adapter_traffic.py --config-path scripts/adapter/traffic/ --config-n
 
 ## Acknowledgements
 - This implementation is based on [[solo-learn repository link](https://github.com/vturrisi/solo-learn)]
-- Dataset from [NetMamba repository link](https://github.com/wangtz19/NetMamba)]
+- Dataset from [[NetMamba repository link](https://github.com/wangtz19/NetMamba)]
