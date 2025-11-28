@@ -1,32 +1,89 @@
-# LiMTa
-The repository of paper Towards Efficient Distributed Network Security: A Lightweight Multitask Traffic Analysis Framework
+This repository contains the implementation for the paper **"Towards Efficient Distributed Network Security: A Lightweight Multitask Traffic Analysis Framework"**.
 
-Our code is based on [[solo-learn repository link](https://github.com/vturrisi/solo-learn)]
-## Features
-- Implementation of FrqRec and MT-adapter
-- Pre-training, linear evaluation, and adapter fine-tuning pipelines
-- Reproducible configuration files for all experiments
-- Support for  dataset
+Our code is based on the [solo-learn repository](https://github.com/vturrisi/solo-learn).
 
-## Dataset Preparation
-1. Download the dataset from the [[NetMamba repository](https://github.com/wangtz19/NetMamba)]
-2. Organize the dataset with the following structure:/dataset/CICIoT2022/{train}or{test}
-## Getting Started
+---
+
+### ✨ Features
+
+- **Implementation of FrqRec and MT-adapter** (Frequency Reconstruction and Multitask Adapter).
+    
+- Comprehensive pipelines for:
+    
+    - **Pre-training**
+        
+    - **Linear Evaluation**
+        
+    - **Adapter Fine-tuning**
+        
+- Reproducible configuration files for all experiments.
+    
+- Support for the **CICIoT2022 dataset**.
+    
+
+---
+
+### 💾 Dataset Preparation
+
+1. Download the **CICIoT2022 dataset** from the [NetMamba repository](https://github.com/wangtz19/NetMamba).
+    
+2. Organize the dataset with the following directory structure:
+    
+    ```
+    /dataset/CICIoT2022/
+    ├── train/
+    └── test/
+    ```
+    
+
+---
+
+### 🚀 Getting Started
+
+First, install the required dependencies:
+
+Bash
+
+```
 pip install -r requirements.txt
-### Pretrain of FreqRec
-bash
+```
+
+#### 1. Pre-training with FreqRec
+
+Run the pre-training script using the reconstruction configuration:
+
+Bash
+
+```
 python main_pretrain_traffic.py --config-path scripts/pretrain/traffic/ --config-name reconstruct.yaml
+```
 
-Pre-trained checkpoints are available at:  [[checkpoints](https://drive.google.com/drive/folders/1u6xPO0gU3699blcttSe08zFuluC_321H?usp=sharing)]
-Take it in /trained_models/
-### Linear Finetune
-bash
+> **Note:** **Pre-trained checkpoints** are available for download [here](https://www.google.com/search?q=https://drive.google.com/drive/folders/1u6xPO0gU3699blcttSe08fFuluC_321H%3Fusp%3Dsharing). Place the downloaded checkpoints in the `/trained_models/` directory.
+
+#### 2. Linear Fine-tuning
+
+Use the pre-trained model for linear evaluation (fine-tuning the classification head only):
+
+Bash
+
+```
 python main_linear_traffic.py --config-path scripts/linear/traffic/ --config-name reconstruct.yaml
+```
 
-### adapter Finetune of MT-adapter
-bash
+#### 3. MT-adapter Fine-tuning
+
+Fine-tune the model using the MT-adapter:
+
+Bash
+
+```
 python main_adapter_traffic.py --config-path scripts/adapter/traffic/ --config-name reconstruct.yaml
+```
 
-## Acknowledgements
-- This implementation is based on [[solo-learn repository link](https://github.com/vturrisi/solo-learn)]
-- Dataset from [[NetMamba repository link](https://github.com/wangtz19/NetMamba)]
+---
+
+### 🙏 Acknowledgements
+
+- **solo-learn**: Our implementation builds upon the great work from the [solo-learn repository](https://github.com/vturrisi/solo-learn).
+    
+- **NetMamba**: We use the dataset provided by the [NetMamba repository](https://github.com/wangtz19/NetMamba).
